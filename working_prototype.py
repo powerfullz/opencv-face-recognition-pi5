@@ -12,7 +12,7 @@ knownFaces = [
 ]
 
 knownFaceNames = [
-    "ZhengCheng Lei"
+    ""
 ]
 
 face_locations = []
