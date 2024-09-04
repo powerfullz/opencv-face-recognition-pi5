@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, jsonify, request
-from hardwareBackend import genFrame
+from hardwareBackend import genFrame, loadKnownFaces
 import os
 
 app = Flask(__name__)
@@ -26,10 +26,13 @@ def faceUpload():
     if file.filename == "":
         return jsonify({"error": "No selected file"}), 400
 
-    # Save the photo
+    # Save the photo and reload
     file.save(os.path.join("/home/powerfullz/face/faces", name))
-
-    return jsonify({"success": "File uploaded successfully"}), 200
+    try:
+        loadKnownFaces()
+        return jsonify({"success": "File uploaded and processed successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":

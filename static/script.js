@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('uploadFaces').addEventListener('click', function () {
         // Prompt user for the name associated with the image
-        let name = prompt("Please enter the name associated with the image:");
+        const nameInput = document.getElementById('name');
+        const name = nameInput.value.trim();
         if (name === null || name.trim() === "") {
             alert("Name is required to upload the image.");
             return; // Exit if the user didn't enter a name
@@ -22,13 +23,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetch('/upload_faces', {
                     method: 'POST',
                     body: formData
-                }).then(response => response.json())
+                })
+                    .then(response => response.json())
                     .then(data => {
-                        console.log(data);
-                        alert('Faces uploaded successfully!');
-                    }).catch(error => {
-                        console.error(error);
-                        alert('Failed to upload faces.');
+                        if (data.success) {
+                            alert("Face uploaded and processed successfully. Page will be refreshed after clicking OK");
+                            location.reload();
+                        } else {
+                            alert("Error: " + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("An error occurred while uploading the face.");
                     });
             }
         };
