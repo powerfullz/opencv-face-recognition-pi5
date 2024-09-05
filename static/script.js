@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Upload button
     document.getElementById('uploadFaces').addEventListener('click', function () {
         // Prompt user for the name associated with the image
         const nameInput = document.getElementById('name');
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         input.click();
     });
 
+    // Reload faces button
     document.getElementById('reloadFaces').addEventListener('click', function () {
         fetch('/reload_faces', {
             method: 'POST'
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log(data);
                 alert('Faces reloaded successfully!');
+                location.reload();
             }).catch(error => {
                 console.error(error);
                 alert('Failed to reload faces.');
