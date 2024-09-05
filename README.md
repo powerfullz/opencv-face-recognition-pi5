@@ -1,6 +1,6 @@
 # rpi5-opencv-face-recognition
 
-一个人脸识别小项目用 OpenCV 和`face_recognition`库在树莓派5上进行人脸识别的小项目。
+一个用 OpenCV 和`face_recognition`库在树莓派5上进行人脸识别的小项目，包含一个 WebUI。
 
 ## 项目结构
 
