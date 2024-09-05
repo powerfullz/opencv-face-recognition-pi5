@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, jsonify, request
-from hardwareBackend import genFrame, loadKnownFaces
+from hardwareBackend import genFrame, loadKnownFaces, updateFaceInfo
 import os
 
 app = Flask(__name__)
@@ -29,11 +29,18 @@ def faceUpload():
     # Save the photo and reload
     file.save(os.path.join("/home/powerfullz/face/faces", name))
     try:
-        loadKnownFaces()
+        updateFaceInfo(name)
         return jsonify({"success": "File uploaded and processed successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/reload_faces", methods=["POST"])
+def faceReload():
+    try:
+        loadKnownFaces()
+        return jsonify({"success": "Reload completed"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

@@ -40,6 +40,21 @@ def loadKnownFaces():
             print(f"No face found in {fileName}")
     isContinue = True
 
+def updateFaceInfo(faceName):
+    global knownFaces, knownFaceNames, isContinue
+    isContinue = False
+    sleep(1)
+
+    faceImage = face_recognition.load_image_file(faceName)
+    faceEncodings = face_recognition.face_encodings(faceImage)
+    if faceEncodings:
+        knownFaces.append(faceEncodings[0])
+        knownFaceNames.append(faceName)
+    else:
+        print(f"No face found in {faceName}")
+    isContinue = True
+
+
 
 loadKnownFaces()  # Initial load
 
