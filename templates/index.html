@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,26 @@
     <script src="{{ url_for('static', filename='script.js')}}"></script>
     <title>Facial Recognition System</title>
 </head>
+
 <body>
-    <h1>Raspberry Pi Facial Recognition</h1>
-    <img src="/video_feed">
-    <div class="buttonrow">
-        <label for="name">Name of the face:</label>
-        <input type="text" id="name" />
-        <button id="uploadFaces">Upload New Face</button>
-        <button id="takePhoto">Take a photo</button>
-        <button id="reloadFaces">Reload Existing Faces</button>
-        <button id="manageData">Manage Data</button>
-    </div>
+    <header>
+        <h1>Raspberry Pi Facial Recognition</h1>
+    </header>
+    <main>
+        <div class="video-container">
+            <img src="/video_feed" alt="Video Feed">
+        </div>
+        <div class="controls">
+            <label for="name">Name of the face:</label>
+            <input type="text" id="name" placeholder="Enter name" />
+            <div class="button-group">
+                <button id="uploadFaces">Upload New Face</button>
+                <button id="takePhoto">Take a Photo</button>
+                <button id="reloadFaces">Reload Existing Faces</button>
+                <button id="manageData">Manage Data</button>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
