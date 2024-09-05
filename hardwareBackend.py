@@ -13,12 +13,23 @@ knownFaceNames = []
 isContinue = False
 
 
+def recognizeAndEncode(faceName):
+    global knownFaceNames, knownFaces
+    faceImage = face_recognition.load_image_file(faceName)
+    faceEncodings = face_recognition.face_encodings(faceImage)
+    if faceEncodings:
+        knownFaces.append(faceEncodings[0])
+        knownFaceNames.append(faceName)
+    else:
+        print(f"No face found in {faceName}")
+
+
 def loadKnownFaces():
     # Load faces from local folder
     # retrieve image from given dir
     global knownFaces, knownFaceNames, isContinue  # Global variables
     isContinue = False  # Halt the recognition process while loading
-    sleep(1)            # wait for the recognition process to stop
+    sleep(1)  # wait for the recognition process to stop
     files = os.listdir(directory)
 
     # Clear previous face to start over when user upload a new face.
@@ -30,30 +41,32 @@ def loadKnownFaces():
     for fileName in files:
         print(f"Processing Faces ({progress}/{total})")
         faceName = fileName.split(".")[0]
-        faceImage = face_recognition.load_image_file(fileName)
-        faceEncodings = face_recognition.face_encodings(faceImage)
-        if faceEncodings:
-            knownFaces.append(faceEncodings[0])
-            knownFaceNames.append(faceName)
-            progress += 1
-        else:
-            print(f"No face found in {fileName}")
+        recognizeAndEncode(faceName)
+        progress += 1
     isContinue = True
+
 
 def updateFaceInfo(faceName):
     global knownFaces, knownFaceNames, isContinue
     isContinue = False
     sleep(1)
-
-    faceImage = face_recognition.load_image_file(faceName)
-    faceEncodings = face_recognition.face_encodings(faceImage)
-    if faceEncodings:
-        knownFaces.append(faceEncodings[0])
-        knownFaceNames.append(faceName)
-    else:
-        print(f"No face found in {faceName}")
+    recognizeAndEncode(faceName)
     isContinue = True
 
+
+def takePhoto(faceName):
+    global isContinue, video
+    isContinue = False
+    isSucessful, frame = video.read()
+
+    if isSucessful:
+        cv2.imwrite(faceName + ".jpg", frame)
+        os.rename(faceName + ".jpg", faceName)
+        recognizeAndEncode(faceName)
+    else:
+        print("Camera read error!")
+
+    isContinue = True
 
 
 loadKnownFaces()  # Initial load

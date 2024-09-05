@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
-                alert('Faces reloaded successfully!');
+                alert('Faces reloaded successfully.');
                 location.reload();
             }).catch(error => {
                 console.error(error);
@@ -59,7 +59,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('takePhoto').addEventListener('click', function () {
-        alert('This feature is under development.');
+        // Prompt user for the name associated with the image
+        const nameInput = document.getElementById('name');
+        const name = nameInput.value.trim();
+        if (name === null || name.trim() === "") {
+            alert("Name is required to take a photo.");
+            return; // Exit if the user didn't enter a name
+        }
+
+        let formData = new FormData();
+        formData.append('name', name);
+
+        fetch("/take_photo", {
+            method: "POST",
+            body: formData
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('Photo taken successfully.');
+                location.reload();
+            }).catch(error => {
+                console.error(error);
+                alert('Failed to take photo.');
+            })
     });
 
     document.getElementById('manageData').addEventListener('click', function () {
