@@ -22,7 +22,7 @@
 
    ```bash
    sudo apt install build-essential cmake libgtk-3-dev libboost-all-dev
-   sudo apt install python3-opencv
+   sudo apt install python3-opencv python3-flask
    pip install numpy==1.26.0 face_recognition --break-system-packages   # 注意 numpy 需安装 1.x 版本，以及安装时需要加 --break-system-packages
    ```
 

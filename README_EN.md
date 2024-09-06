@@ -23,7 +23,7 @@ A small face recognition project using OpenCV and the `face_recognition` library
 
    ```bash
    sudo apt install build-essential cmake libgtk-3-dev libboost-all-dev
-   sudo apt install python3-opencv
+   sudo apt install python3-opencv python3-flask
    pip install numpy==1.26.0 face_recognition --break-system-packages   # Note: numpy needs to be installed in version 1.x, and the installation requires the --break-system-packages flag
    ```
 
