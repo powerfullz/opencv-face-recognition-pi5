@@ -20,9 +20,46 @@ A small face recognition project using OpenCV and the `face_recognition` library
    ```
 
 2. **Install the required dependencies:**
+   
+   Temporarily increase swap size:
 
    ```bash
-   sudo apt install build-essential cmake libgtk-3-dev libboost-all-dev
+   sudo nano /etc/dphys-swapfile
+
+   < change CONF_SWAPSIZE=100 to CONF_SWAPSIZE=1024 and save / exit nano >
+
+   sudo /etc/init.d/dphys-swapfile restart
+   ```
+
+   Install dlib build dependencies:
+
+   ```bash
+   sudo apt install build-essential \
+    cmake \
+    gfortran \
+    git \
+    wget \
+    curl \
+    graphicsmagick \
+    libgraphicsmagick1-dev \
+    libatlas-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libboost-all-dev \
+    libgtk2.0-dev \
+    libjpeg-dev \
+    liblapack-dev \
+    libswscale-dev \
+    pkg-config \
+    python3-dev \
+    python3-numpy \
+    python3-pip \
+    zip
+   ```
+
+   Finally, install dependencies for this project:
+   
+   ```bash
    sudo apt install python3-opencv python3-flask
    pip install numpy==1.26.0 face_recognition --break-system-packages   # Note: numpy needs to be installed in version 1.x, and the installation requires the --break-system-packages flag
    ```
