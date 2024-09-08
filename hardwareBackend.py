@@ -13,6 +13,19 @@ knownFaceNames = []
 isContinue = False
 
 
+def getFileList():
+    return os.listdir(directory)
+
+def deleteFile(file):
+    global isContinue, knownFaces, knownFaceNames
+    isContinue = False
+    if os.path.exists(file):
+        os.remove(file)
+        index = knownFaceNames.index(file)
+        del knownFaces[index]
+        del knownFaceNames[index]
+    isContinue = True
+
 def recognizeAndEncode(faceName):
     global knownFaceNames, knownFaces
     faceImage = face_recognition.load_image_file(faceName)
@@ -22,7 +35,6 @@ def recognizeAndEncode(faceName):
         knownFaceNames.append(faceName)
     else:
         print(f"No face found in {faceName}")
-
 
 def loadKnownFaces():
     # Load faces from local folder

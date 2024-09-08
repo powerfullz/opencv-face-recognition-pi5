@@ -112,3 +112,71 @@ button:hover {
         width: 100%;
     }
 }
+
+/* Modal styles */
+#manageDataModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    max-width: 80%;
+    width: 400px;
+}
+
+#manageDataModal h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    color: #333;
+}
+
+#manageDataModal ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+#manageDataModal li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#manageDataModal li:last-child {
+    border-bottom: none;
+}
+
+#manageDataModal input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#manageDataModal button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+#manageDataModal button:last-child {
+    margin-right: 0;
+}
+
+#manageDataModal button:hover {
+    background-color: #45a049;
+}
+
+#manageDataModal .button-group {
+    display: flex;
+    justify-content: flex-end;
+}

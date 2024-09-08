@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, jsonify, request
-from hardwareBackend import genFrame, loadKnownFaces, updateFaceInfo, takePhoto
+from hardwareBackend import genFrame, loadKnownFaces, updateFaceInfo, takePhoto, getFileList, deleteFile
 import os
 
 app = Flask(__name__)
@@ -13,7 +13,6 @@ def videoFeed():
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/upload_faces", methods=["POST"])
 def faceUpload():
@@ -54,6 +53,18 @@ def captureWebcam():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/manage_data", methods=["GET"])
+def dataManage():
+    files = getFileList()
+    return jsonify(files)
+
+@app.route("/delete_files", methods=["POST"])
+def deletion():
+    data = request.get_json()
+    filesTodelete = data.get('files', [])
+    for file in filesTodelete:
+        deleteFile(file)
+    return jsonify({"message": "Selected files have been deleted."})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
