@@ -14,7 +14,8 @@
 
 1. **克隆仓库：**
    ```bash
-   git clone https://github.com/yourusername/rpi5-opencv-face-recognition.git
+   git clone https://github.com/powerfullz/opencv-face-recognition-pi5.git
+   # gitee 用户请使用 git clone https://gitee.com/powerfullz/rpi5-face-recognition.git
    cd rpi5-opencv-face-recognition
    ```
 

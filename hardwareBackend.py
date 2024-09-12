@@ -5,7 +5,7 @@ import os
 from time import sleep
 
 video = cv2.VideoCapture(0)
-directory = "/home/powerfullz/face/faces"
+directory = "/home/powerfullz/face/faces"   # Modify here to change the location where the program store faces.
 os.chdir(directory)
 
 knownFaces = []
